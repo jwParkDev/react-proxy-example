@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const CreateBook = ({ onChangeForm, handleSubmit }) => {
+const CreateBook = ({ onChangeForm, handleSubmit, mode }) => {
 
 
     return(
@@ -9,12 +9,12 @@ const CreateBook = ({ onChangeForm, handleSubmit }) => {
             <div className="form">
                 <form>
                     <div className="input-group">
-                        <label>book</label>
+                        <label>{mode === 'book' ? 'book' : 'todo'}</label>
                         <input 
                             type="text" 
                             onChange={(e) => onChangeForm(e)} 
-                            name="book" 
-                            placeholder="book" 
+                            name={mode === 'book' ? 'book' : 'todo'}
+                            placeholder={mode === 'book' ? 'book' : 'todo'}
                         />
                     </div>
                     <div className="input-group">
@@ -27,17 +27,17 @@ const CreateBook = ({ onChangeForm, handleSubmit }) => {
                         />
                     </div>
                     <div className="input-group">
-                        <label>author</label>
+                        <label>{mode === 'book' ? 'author' : 'isComplete'}</label>
                         <input 
                             type="text" 
                             onChange={(e) => onChangeForm(e)} 
-                            name="author"
-                            placeholder="author" 
+                            name={mode === 'book' ? 'author' : 'isComplete'}
+                            placeholder={mode === 'book' ? 'author' : 'isComplete'}
                         />
                     </div>
                     <button 
                         className="submit-button"
-                        onClick= {() => handleSubmit()}
+                        onClick= {(e) => handleSubmit(e)}
                     >Submit
                     </button>
                 </form>

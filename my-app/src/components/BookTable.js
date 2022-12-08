@@ -1,25 +1,35 @@
 import React from 'react'
 
-const BookTable = ({books}) => {
+const BookTable = ({mode, books, todos}) => {
 
-    if (books.length === 0) return null;
+    if (books.length === 0 && todos.length === 0) return null;
 
     return(
         <div className="table-wrapper">
             <div className="table-box">
-                <h2>My Books</h2>
+                <h2>{mode === 'book' ? 'My Books' : 'My Todos'}</h2>
                 <div className="table-scroll">
                     <table>
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Book</th>
-                            <th>Category</th>
-                            <th>Author</th>
+                            {mode === 'book'
+                            ? <>
+                                <th>Id</th>
+                                <th>Book</th>
+                                <th>Category</th>
+                                <th>Author</th>
+                            </>
+                            :<>
+                                <th>Id</th>
+                                <th>Todo</th>
+                                <th>Category</th>
+                                <th>isComplete</th>
+                            </>}
                         </tr>
                         </thead>
                         <tbody>
-                            {books.map((book,index) => {
+                            {mode === 'book'
+                            ? books.map((book,index) => {
                                 return (
                                     <tr key = {index} className={index%2 === 0?'odd':'even'}>
                                         <td>{index + 1}</td>
@@ -28,7 +38,18 @@ const BookTable = ({books}) => {
                                         <td>{book.author}</td>
                                     </tr>
                                 )
-                            })}
+                            })
+                            : todos.map((todo,index) => {
+                                return (
+                                    <tr key = {index} className={index%2 === 0?'odd':'even'}>
+                                        <td>{index + 1}</td>
+                                        <td>{todo.todo}</td>
+                                        <td>{todo.category}</td>
+                                        <td>{todo.isComplete ? '달성' : '미달성'}</td>
+                                    </tr>
+                                )
+                            })
+                            }
                         </tbody>
                     </table>
                 </div>
