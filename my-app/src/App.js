@@ -90,7 +90,7 @@ function App () {
         } else if (e.target.name === 'isComplete') {
           bookShelf.isComplete = e.target.value;
         }
-        setBookShelf(inputData);
+        setTodoShelf(inputData);
       }
   }
 
