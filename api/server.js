@@ -26,6 +26,11 @@ app.post('/api/book', (req, res) => {
   res.json("book added");
 });
 
+// app.get('/api', (req, res) => {
+//   console.log('api called!')
+//   res.send(`<h3>나는 /api로만 요청했을 때 나오는 화면이지!</h3>`);
+// });
+
 app.get('/', (req,res) => {
   res.send(`<h1>API Running on the port ${port}</h1>`);
 });
